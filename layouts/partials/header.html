@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ .Title }}</title>
+	{{ $jquery := resources.Get "js/jquery-3.3.1.js" }}
+	{{ $jqueryslim := resources.Get "js/jquery-3.3.1.slim.js" }}
+	{{ $popper := resources.Get "js/popper.js" }}
+	
+	{{ $bsutil := resources.Get "js/util.js" }}
+	{{ $bsalert := resources.Get "js/alert.js" }}
+	{{ $bsbutton := resources.Get "js/button.js" }}
+	{{ $bscarousel := resources.Get "js/carousel.js" }}
+	{{ $bscollapse := resources.Get "js/collapse.js" }}
+	{{ $bsdropdown := resources.Get "js/dropdown.js" }}
+	{{ $bsmodal := resources.Get "js/modal.js" }}
+	{{ $bstooltip := resources.Get "js/tooltip.js" }}
+	{{ $bspopover := resources.Get "js/popover.js" }}
+	{{ $bsscrollspy := resources.Get "js/scrollspy.js" }}
+	{{ $bstab := resources.Get "js/tab.js" }}
+	{{ $js := slice $jqueryslim $popper $bsutil $bsalert $bsbutton $bscarousel $bsdropdown $bsmodal $bstooltip $bspopover $bsscrollspy $bstab | resources.Concat "bootstreph.js" | minify }}
+	
+	{{ $cssoptions := (dict "targetPath" "bootstreph.css" "outputStyle" "compressed" "enableSourceMap" true "includePaths" (slice "themes/hecksite/assets/scss")) }}
+	{{ $style := resources.Get "scss/bootstrap.scss" | toCSS $cssoptions | minify }}
+
+	<link rel="stylesheet" type="text/css" href="{{ $style.Permalink }}">
+	<script src="{{ $js.Permalink }}"></script>
+</head>
+<body>
+	<div class="container">
