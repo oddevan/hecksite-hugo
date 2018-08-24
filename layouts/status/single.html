@@ -1,0 +1,12 @@
+{{ define "main" }}
+
+<div class="card">
+  <div class="card-body">
+    {{ .Content }}
+  </div>
+  <div class="card-footer text-muted text-right">
+    {{ .Date.Format "Mon Jan 2, 2006" }}
+  </div>
+</div>
+
+{{ end }}
