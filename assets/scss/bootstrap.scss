@@ -43,3 +43,43 @@ $body-text: #e9ecef;
 @import "carousel";
 @import "utilities";
 @import "print";
+
+#eph-status-card {
+	margin-top: $grid-gutter-width;
+	
+	.twitter-tweet-rendered {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+#eph-status-body {
+	font-size: 1.5rem;
+	font-weight: 300;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: $grid-gutter-width / 2;
+	padding-bottom: $grid-gutter-width;
+	
+	p:last-child {
+		margin-bottom: 0;
+	}
+}
+
+#eph-status-meta {
+	text-align: right;
+	color: $text-muted;
+	margin-bottom: 0;
+	
+	a { color: $text-muted; }
+}
+
+#eph-footer {
+	text-align: center;
+	color: $gray-500;
+	margin-top: 100px;
+	
+	a {
+		color: $yellow;
+		font-weight: bold;
+	}
+}
