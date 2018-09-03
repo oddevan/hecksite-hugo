@@ -1,0 +1,16 @@
+{{ $original := .Page.Resources.GetMatch (printf "*%s*" (.Get 0)) -}}
+{{ if eq $original.ResourceType `image` -}}
+	{{- if gt $original.Width 800 }}{{ $.Scratch.Set `eight` ($original.Resize "800x") }}{{ end -}}
+	{{- if gt $original.Width 400 }}{{ $.Scratch.Set `four` ($original.Resize "400x") }}{{ end -}}
+
+<img style="max-width:100%;height:auto;" src="{{ $original.RelPermalink }}" srcset="
+{{- with $.Scratch.Get `four` }}{{ .RelPermalink }} {{ .Width }}w,{{ end -}}
+{{- with $.Scratch.Get `eight` }}{{ .RelPermalink }} {{ .Width }}w,{{ end -}}
+{{ $original.RelPermalink}} {{$original.Width}}w"
+{{- with $original.Params.alt }} alt="{{ . }}"{{ end -}}
+>
+{{- else if (eq $original.ResourceType `mp4`) or (eq $original.ResourceType `video`) -}}
+<video style="max-width:100%;height:auto;" src="{{ $original.RelPermalink  }}"
+{{- if $original.Params.gif }} autoplay loop{{ end -}}
+></video>
+{{- end -}}

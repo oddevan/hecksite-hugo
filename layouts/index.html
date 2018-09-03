@@ -1,8 +1,10 @@
 {{ define "main" }}
 
   <h1>Status</h1>
-  {{- range where .Pages "Section" "status" -}}
-  	{{ .Render "summary" }}
-  {{- end -}}
+  {{- $paginator := .Paginate (where .Pages "Type" "status") }}
+	{{ range $paginator.Pages }}
+		 {{ .Render "summary" }}
+	{{ end }}
+	{{ template "_internal/pagination.html" . }}
 
 {{ end }}
