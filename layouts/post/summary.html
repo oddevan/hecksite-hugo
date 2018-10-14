@@ -1,13 +1,11 @@
-{{ define "main" }}
-
 <div class="card" id="eph-status-card">
   <div class="card-body">
-  	<div id="eph-status-body">
   	{{- if .Title }}
-  	<h1>{{ .Title }}</h1>
+  	<h2>{{ .Title }}</h2>
   	{{- else }}
-  	<h1 class="sr-only">Post by Evan Hildreth</h1>
+  	<h2 class="sr-only">Post by Evan Hildreth</h2>
   	{{ end -}}
+  	<div id="eph-status-body">
     {{ .Content }}
     </div>
     <p id="eph-status-meta"><a href="{{ .Permalink }}">
@@ -28,5 +26,3 @@
     </p>
   </div>
 </div>
-
-{{ end }}

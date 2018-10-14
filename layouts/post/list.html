@@ -1,0 +1,11 @@
+{{ define "main" }}
+
+  <h1>Recent Posts</h1>
+	
+  {{- $paginator := .Paginate (where .Pages "Type" "post") }}
+	{{ range $paginator.Pages }}
+		 {{ .Render "summary" }}
+	{{ end }}
+	{{ template "_internal/pagination.html" . }}
+
+{{ end }}
